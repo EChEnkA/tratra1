@@ -1,3 +1,6 @@
+import os
+
+
 def human_read_format(size):
     e = 1
     while size > 1023:
@@ -11,3 +14,11 @@ def human_read_format(size):
         return str(round(size)) + "МБ"
     elif e == 4:
         return str(round(size)) + "ГБ"
+
+
+def get_files_sizes():
+    r = []
+    for i in os.listdir('.'):
+        if os.path.isfile(i):
+            r.append(str(i) + ' ' + human_read_format(os.path.getsize(i)))
+    return '\n'.join(r)
